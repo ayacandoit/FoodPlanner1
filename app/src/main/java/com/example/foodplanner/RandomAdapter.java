@@ -49,6 +49,10 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
     public int getItemCount() {
         return recipeList.size();
     }
+    public void setData(List<Recipe>list){
+        this.recipeList=list;
+        notifyDataSetChanged();
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;

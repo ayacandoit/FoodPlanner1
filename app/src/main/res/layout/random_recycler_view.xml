@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/recipeName"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Today Meal"
@@ -28,4 +28,43 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         tools:listitem="@layout/random_recipe_item" />
+    <TextView
+        android:id="@+id/recipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textSize="25sp"
+        android:textColor="#0F0E0E"
+        android:textStyle="bold"
+        android:fontFamily="@font/inriasansbold"
+        android:layout_margin="20dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/crv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        tools:listitem="@layout/random_recipe_item" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Countries"
+        android:textSize="25sp"
+        android:textColor="#0F0E0E"
+        android:textStyle="bold"
+        android:fontFamily="@font/inriasansbold"
+        android:layout_margin="20dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/arv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        tools:listitem="@layout/random_recipe_item" />
+
 </LinearLayout>
