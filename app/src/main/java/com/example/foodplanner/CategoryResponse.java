@@ -1,5 +1,6 @@
 package com.example.foodplanner;
 
+import com.example.foodplanner.Model.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

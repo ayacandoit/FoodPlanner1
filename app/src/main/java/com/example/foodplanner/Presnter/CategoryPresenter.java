@@ -1,6 +1,6 @@
 package com.example.foodplanner.Presnter;
 
-import com.example.foodplanner.Category;
+import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Network.CategoryNetworkCallBack;
 import com.example.foodplanner.Model.Repositry;
 import com.example.foodplanner.View.CategoryView;

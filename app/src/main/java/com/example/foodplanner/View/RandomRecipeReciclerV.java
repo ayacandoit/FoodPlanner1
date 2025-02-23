@@ -1,8 +1,6 @@
-package com.example.foodplanner;
+package com.example.foodplanner.View;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,14 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
-import com.example.foodplanner.Model.Network.RecipeApi;
+import com.example.foodplanner.Model.Recipe;
 import com.example.foodplanner.Model.Repositry;
 import com.example.foodplanner.Presnter.CategoryPresenter;
 import com.example.foodplanner.Presnter.HomePresenter;
-import com.example.foodplanner.View.CategoryAdapter;
-import com.example.foodplanner.View.CategoryView;
-import com.example.foodplanner.View.MealView;
+import com.example.foodplanner.R;
 
 import java.util.ArrayList;
 import java.util.List;

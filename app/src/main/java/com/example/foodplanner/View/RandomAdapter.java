@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.View;
 
 
 import android.content.Context;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.Model.Recipe;
 import com.example.foodplanner.R;
 
 

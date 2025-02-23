@@ -1,5 +1,6 @@
 package com.example.foodplanner.Model.Network;
 
+import com.example.foodplanner.AreaResponse;
 import com.example.foodplanner.CategoryResponse;
 import com.example.foodplanner.RecipeResponse;
 
@@ -13,6 +14,11 @@ public  interface RecipeApi {
 
     @GET("categories.php")
     Call<CategoryResponse> getCategories();
+    @GET("list.php?a=list")
+    Call<AreaResponse>getArea();
+
+
+
 
 
 

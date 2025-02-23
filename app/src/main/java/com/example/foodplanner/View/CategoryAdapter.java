@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Category;
+import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.R;
 
 

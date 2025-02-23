@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,12 @@ import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.foodplanner.LogIn;
+import com.example.foodplanner.R;
+import com.example.foodplanner.RegisterScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.ktx.Firebase;
 
 public class SplashActivity extends AppCompatActivity {
     Handler handler=new Handler();
