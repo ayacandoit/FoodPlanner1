@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.foodplanner.Area;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
 import com.example.foodplanner.Model.Recipe;
 import com.example.foodplanner.Model.Repositry;
+import com.example.foodplanner.Presnter.AreaPresenter;
 import com.example.foodplanner.Presnter.CategoryPresenter;
 import com.example.foodplanner.Presnter.HomePresenter;
 import com.example.foodplanner.R;
@@ -25,13 +27,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RandomRecipeReciclerV extends AppCompatActivity implements MealView, CategoryView {
+public class RandomRecipeReciclerV extends AppCompatActivity implements MealView, CategoryView, AreaView{
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
-    private RecyclerView recyclerViewRecipes, recyclerViewCategories;
+    private RecyclerView recyclerViewRecipes, recyclerViewCategories,recyclerViewArreaes;
     private RandomAdapter recipeAdapter;
     private CategoryAdapter categoryAdapter;
+    private AreaAdapter areaAdapter;
+
     private List<Recipe> recipeList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
+    private List<Area> areaList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +45,11 @@ public class RandomRecipeReciclerV extends AppCompatActivity implements MealView
         EdgeToEdge.enable(this);
         setContentView(R.layout.random_recycler_view);
         HomePresenter homePresenter =new HomePresenter(this, Repositry.getInstance(MealRemoteDataSource.getInstance()));
-
+        CategoryPresenter categoryPresenter=new CategoryPresenter(Repositry.getInstance( MealRemoteDataSource.getInstance()),this);
+        AreaPresenter areaPresenter=new AreaPresenter(Repositry.getInstance(MealRemoteDataSource.getInstance()),this);
         recyclerViewRecipes = findViewById(R.id.rrv);
         recyclerViewCategories = findViewById(R.id.crv);
+        recyclerViewArreaes=findViewById(R.id.arv);
 
         // Setup RecyclerViews
         recyclerViewRecipes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -51,12 +59,14 @@ public class RandomRecipeReciclerV extends AppCompatActivity implements MealView
         recyclerViewCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryAdapter = new CategoryAdapter(categoryList, this);
         recyclerViewCategories.setAdapter(categoryAdapter);
-homePresenter.getRandomMeal();
-        CategoryPresenter categoryPresenter=new CategoryPresenter(Repositry.getInstance( MealRemoteDataSource.getInstance()),this);
-        // Fetch Data
+
+
+        recyclerViewArreaes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        areaAdapter = new AreaAdapter( this);
+        recyclerViewArreaes.setAdapter(areaAdapter);
+        homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
-//        fetchRandomRecipes();
-//        fetchCategories();
+        areaPresenter.getAllArea();
 
     }
 
@@ -71,6 +81,12 @@ homePresenter.getRandomMeal();
     public void setCategory(List<Category> categoryPojoList) {
         categoryAdapter.setCategoryList(categoryPojoList);
         categoryAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setArea(List<Area> AreaPojoList) {
+        areaAdapter.setAreaList(AreaPojoList);
+        areaAdapter.notifyDataSetChanged();
     }
 
     @Override

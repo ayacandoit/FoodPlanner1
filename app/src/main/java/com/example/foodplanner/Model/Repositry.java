@@ -2,6 +2,7 @@ package com.example.foodplanner.Model;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.foodplanner.Model.Network.AreaNetworkCallBack;
 import com.example.foodplanner.Model.Network.CategoryNetworkCallBack;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
 import com.example.foodplanner.Model.Network.RandomMealNetworkCallBack;
@@ -29,6 +30,9 @@ public class Repositry {
     }
     public void getCategoryMeal(CategoryNetworkCallBack categoryNetworkCallBack){
         mealRemoteDataSource.CategoryNetworkCallBAck(categoryNetworkCallBack);
+    }
+    public void getAreaMeal(AreaNetworkCallBack areaNetworkCallBack){
+        mealRemoteDataSource.AreaNetworkCallBack(areaNetworkCallBack);
     }
 
 

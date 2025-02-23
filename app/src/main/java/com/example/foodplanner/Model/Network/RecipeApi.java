@@ -15,7 +15,7 @@ public  interface RecipeApi {
     @GET("categories.php")
     Call<CategoryResponse> getCategories();
     @GET("list.php?a=list")
-    Call<AreaResponse>getArea();
+    Call<AreaResponse>getAreaes();
 
 
 

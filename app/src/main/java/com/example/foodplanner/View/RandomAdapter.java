@@ -38,6 +38,9 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.recipeName.setText(recipe.strMeal);
+        holder.itemView.setOnClickListener(
+
+        );
 
         // Load image using Glide
         Glide.with(context)

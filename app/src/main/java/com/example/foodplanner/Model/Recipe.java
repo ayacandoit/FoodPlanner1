@@ -1,7 +1,9 @@
 package com.example.foodplanner.Model;
 
 
-public class Recipe {
+import java.io.Serializable;
+
+public class Recipe implements Serializable {
     public String idMeal;
     public String strMeal;
 

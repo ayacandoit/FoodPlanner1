@@ -14,13 +14,15 @@ import com.example.foodplanner.Area;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
-    private List<Area> areaList;
+    private List<Area> areaList=new ArrayList<>();
+
     private Context context;
-    public AreaAdapter(List<Area> areaList, Context context) {
-        areaList =  areaList;
+    public AreaAdapter( Context context) {
+
         this.context = context;
     }
 

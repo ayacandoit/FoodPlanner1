@@ -2,6 +2,8 @@ package com.example.foodplanner.Model.Network;
 
 import android.util.Log;
 
+import com.example.foodplanner.Area;
+import com.example.foodplanner.AreaResponse;
 import com.example.foodplanner.CategoryResponse;
 import com.example.foodplanner.RecipeResponse;
 
@@ -71,5 +73,27 @@ public void CategoryNetworkCallBAck(CategoryNetworkCallBack categoryNetworkCallB
         }
     });
 }
+    public void AreaNetworkCallBack(AreaNetworkCallBack areaMealNetworkCallBack) {
+
+        Call<AreaResponse> api = mealApi.getAreaes();
+        api.enqueue(new Callback<AreaResponse>() {
+            @Override
+            public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    areaMealNetworkCallBack.onSuccessResultArea(response.body().areas);
+                } else {
+                    Log.e("API_ERROR", "Response error: " + response.errorBody());
+                    areaMealNetworkCallBack.onFailureResultArea("Response error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AreaResponse> call, Throwable t) {
+                Log.e("API_ERROR", "Error: " + t.getMessage());
+                areaMealNetworkCallBack.onFailureResultArea(t.getMessage());
+            }
+        });
+    }
+
 
 }
