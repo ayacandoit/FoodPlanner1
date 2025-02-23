@@ -80,7 +80,7 @@ public void CategoryNetworkCallBAck(CategoryNetworkCallBack categoryNetworkCallB
             @Override
             public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    areaMealNetworkCallBack.onSuccessResultArea(response.body().areas);
+                    areaMealNetworkCallBack.onSuccessResultArea(response.body().meals);
                 } else {
                     Log.e("API_ERROR", "Response error: " + response.errorBody());
                     areaMealNetworkCallBack.onFailureResultArea("Response error");

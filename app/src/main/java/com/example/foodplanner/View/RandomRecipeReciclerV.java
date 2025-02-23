@@ -61,9 +61,9 @@ public class RandomRecipeReciclerV extends AppCompatActivity implements MealView
         recyclerViewCategories.setAdapter(categoryAdapter);
 
 
-        recyclerViewArreaes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        areaAdapter = new AreaAdapter( this);
-        recyclerViewArreaes.setAdapter(areaAdapter);
+       recyclerViewArreaes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+       areaAdapter = new AreaAdapter( this);
+       recyclerViewArreaes.setAdapter(areaAdapter);
         homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
         areaPresenter.getAllArea();

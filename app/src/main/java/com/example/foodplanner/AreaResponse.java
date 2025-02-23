@@ -5,6 +5,6 @@ import com.example.foodplanner.Model.Recipe;
 import java.util.List;
 
 public class AreaResponse {
-    public List<Area> areas;
+    public List<Area> meals;
 
 }
