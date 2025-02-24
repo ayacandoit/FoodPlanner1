@@ -1,7 +1,9 @@
 package com.example.foodplanner.View;
 
+import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.LogIn;
+import com.example.foodplanner.MealActivity;
 import com.example.foodplanner.Model.Recipe;
 import com.example.foodplanner.R;
 
@@ -38,23 +42,29 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.recipeName.setText(recipe.strMeal);
-//        holder.itemView.setOnClickListener(
-//
-//        );
 
-        // Load image using Glide
+
         Glide.with(context)
                 .load(recipe.strMealThumb)
-                .placeholder(R.drawable.re)  // Add a placeholder image
+                .placeholder(R.drawable.re)
                 .into(holder.recipeImage);
+
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MealActivity.class);
+            intent.putExtra("recipe", recipe);
+            context.startActivity(intent);
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return recipeList.size();
     }
-    public void setData(List<Recipe>list){
-        this.recipeList=list;
+
+    public void setData(List<Recipe> list) {
+        this.recipeList = list;
         notifyDataSetChanged();
     }
 
@@ -69,4 +79,3 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
         }
     }
 }
-
