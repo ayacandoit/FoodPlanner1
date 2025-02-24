@@ -136,7 +136,7 @@
             tools:listitem="@layout/random_recipe_item" />
 
         <TextView
-            android:id="@+id/instruction"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Instruction"
@@ -145,11 +145,21 @@
             android:textStyle="bold"
             android:fontFamily="@font/inriasansbold"
             android:layout_margin="20dp" />
+        <TextView
+            android:id="@+id/instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Instruction"
+            android:textSize="20sp"
+            android:textColor="#8A47EB"
+            android:inputType="textMultiLine"
+            android:fontFamily="@font/inriasansbold"
+            android:layout_margin="20dp" />
 
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginTop="16dp" />
 
     </LinearLayout>
