@@ -1,31 +1,29 @@
 package com.example.foodplanner.Register.Model;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
+import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
-import com.example.foodplanner.MainActivity;
-import com.example.foodplanner.Register.View.RegisterScreen;
+import com.example.foodplanner.HomeScreen.View.Home_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginModel {
+public class RegisterModel {
     FirebaseAuth firebaseAuth;
 
-    public LoginModel(FirebaseAuth firebaseAuth) {
-        this.firebaseAuth = firebaseAuth;
+    public RegisterModel() {
+        firebaseAuth = FirebaseAuth.getInstance();
     }
-    void createAccountInFirebase(String email, String password,RegisterListener listener) {
+
+   public void createAccountInFirebase(String email, String password, String confirmPassword, Context context) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        listener.onSuccess();
+                       // listener.onSuccess();
 //                        Toast.makeText(RegisterScreen.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(RegisterScreen.this, MainActivity.class));
+                       context.startActivity(new Intent(context, Home_Activity.class));
 //
 //                        finish();
                     } else {
-                        listener.onFailure("Failed to create account: ");
+                        //listener.onFailure("Failed to create account: ");
                         //Toast.makeText(RegisterScreen.this, "Failed to create account: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

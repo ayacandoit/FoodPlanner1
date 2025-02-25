@@ -1,27 +1,28 @@
 package com.example.foodplanner.Register.View;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodplanner.Login.LogIn;
-import com.example.foodplanner.MainActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.Register.Presenter.LoginPresenter;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.foodplanner.Register.Model.RegisterModel;
+import com.example.foodplanner.Register.Presenter.RegisterPresenter;
 
-public class RegisterScreen extends AppCompatActivity implements LoginPresenter {
+public class RegisterScreen extends AppCompatActivity implements RegisterPresenter {
     EditText emailEditTxt, passwordEditTxt, confirmPassEditTxt;
     Button createAccount;
     TextView loginTextView;
+    RegisterModel loginModel;
+    Context context;
 //    FirebaseAuth firebaseAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -36,11 +37,12 @@ public class RegisterScreen extends AppCompatActivity implements LoginPresenter 
         confirmPassEditTxt = findViewById(R.id.ConfirmPasswordEditText);
         createAccount = findViewById(R.id.createAcountBtn);
         loginTextView = findViewById(R.id.LoginTxt);
+        context =this;
 
-//        firebaseAuth = FirebaseAuth.getInstance();
 
         createAccount.setOnClickListener(v -> createAccount());
         loginTextView.setOnClickListener(v ->startActivity(new Intent(RegisterScreen.this, LogIn.class)));
+        loginModel=new RegisterModel();
     }
 
     void createAccount() {
@@ -52,22 +54,8 @@ public class RegisterScreen extends AppCompatActivity implements LoginPresenter 
         if (!isValidated) {
             return;
         }
-        createAccountInFirebase(email, password);
+        createAccount(email, password,confirmPassword,context);
     }
-
-//    void createAccountInFirebase(String email, String password) {
-//        firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(RegisterScreen.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(RegisterScreen.this, MainActivity.class));
-//
-//                        finish();
-//                    } else {
-//                        Toast.makeText(RegisterScreen.this, "Failed to create account: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//    }
 
     boolean validateData(String email, String password, String confirmPassword) {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -86,7 +74,7 @@ public class RegisterScreen extends AppCompatActivity implements LoginPresenter 
     }
 
     @Override
-    public void createAccount(String email, String password) {
-
+    public void createAccount(String email, String password,String confirmPassword,Context context) {
+        loginModel.createAccountInFirebase(email,password,confirmPassword,context);
     }
 }
