@@ -5,6 +5,7 @@ package com.example.foodplanner.View;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.Category_Country_Page;
+import com.example.foodplanner.MealActivity;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.R;
 
@@ -42,11 +45,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Category category = categoryList.get(position);
         holder.categoryName.setText(category.getStrCategory());
 
-        // Load category image
+
         Glide.with(context)
                 .load(category.getStrCategoryThumb())
                 .placeholder(R.drawable.re)
                 .into(holder.categoryImage);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, Category_Country_Page.class);
+            intent.putExtra("category", category.getStrCategory());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -67,4 +75,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             categoryName = itemView.findViewById(R.id.recipeName);
             categoryImage = itemView.findViewById(R.id.cardImage);
         }
+
+
+
+
     }}

@@ -41,7 +41,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
         holder.ingredientName.setText(ingredient);
         holder.measureName.setText(measure);
 
-        // تحميل صورة المكون
+
         String imageUrl = "https://www.themealdb.com/images/ingredients/" + ingredient + "-Small.png";
         Glide.with(context).load(imageUrl).into(holder.ingredientImage);
     }
