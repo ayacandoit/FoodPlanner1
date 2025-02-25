@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.HomeScreen.Model.RecipeResponse;
 import com.example.foodplanner.Model.Network.RecipeApi;
 import com.example.foodplanner.HomeScreen.Model.Recipe;
-import com.example.foodplanner.HomeScreen.View.RandomAdapter;
+import com.example.foodplanner.HomeScreen.View.Adapter.RandomAdapter;
 import com.example.foodplanner.R;
 
 import java.util.List;

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodplanner.Login.LogIn;
 import com.example.foodplanner.R;
-import com.example.foodplanner.Register.RegisterScreen;
+import com.example.foodplanner.Register.View.RegisterScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -24,13 +24,13 @@
             android:name=".DetailsScreen.MealActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen.View.RandomRecipeReciclerV"
+            android:name=".HomeScreen.View.Home_Activity"
             android:exported="false" />
         <activity
             android:name=".Login.LogIn"
             android:exported="false" />
         <activity
-            android:name=".Register.RegisterScreen"
+            android:name=".Register.View.RegisterScreen"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

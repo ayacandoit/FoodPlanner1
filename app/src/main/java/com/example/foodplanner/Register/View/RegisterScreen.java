@@ -1,4 +1,4 @@
-package com.example.foodplanner.Register;
+package com.example.foodplanner.Register.View;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,13 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodplanner.Login.LogIn;
 import com.example.foodplanner.MainActivity;
 import com.example.foodplanner.R;
+import com.example.foodplanner.Register.Presenter.LoginPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterScreen extends AppCompatActivity {
+public class RegisterScreen extends AppCompatActivity implements LoginPresenter {
     EditText emailEditTxt, passwordEditTxt, confirmPassEditTxt;
     Button createAccount;
     TextView loginTextView;
-    FirebaseAuth firebaseAuth;
+//    FirebaseAuth firebaseAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,7 +37,7 @@ public class RegisterScreen extends AppCompatActivity {
         createAccount = findViewById(R.id.createAcountBtn);
         loginTextView = findViewById(R.id.LoginTxt);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
 
         createAccount.setOnClickListener(v -> createAccount());
         loginTextView.setOnClickListener(v ->startActivity(new Intent(RegisterScreen.this, LogIn.class)));
@@ -54,19 +55,19 @@ public class RegisterScreen extends AppCompatActivity {
         createAccountInFirebase(email, password);
     }
 
-    void createAccountInFirebase(String email, String password) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(RegisterScreen.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterScreen.this, MainActivity.class));
-
-                        finish();
-                    } else {
-                        Toast.makeText(RegisterScreen.this, "Failed to create account: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
+//    void createAccountInFirebase(String email, String password) {
+//        firebaseAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        Toast.makeText(RegisterScreen.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(RegisterScreen.this, MainActivity.class));
+//
+//                        finish();
+//                    } else {
+//                        Toast.makeText(RegisterScreen.this, "Failed to create account: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//    }
 
     boolean validateData(String email, String password, String confirmPassword) {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -82,5 +83,10 @@ public class RegisterScreen extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void createAccount(String email, String password) {
+
     }
 }

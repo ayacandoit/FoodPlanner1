@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.Register.RegisterScreen;
-import com.example.foodplanner.HomeScreen.View.RandomRecipeReciclerV;
+import com.example.foodplanner.Register.View.RegisterScreen;
+import com.example.foodplanner.HomeScreen.View.Home_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -62,7 +62,7 @@ public class LogIn extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LogIn.this, RandomRecipeReciclerV.class));
+                            startActivity(new Intent(LogIn.this, Home_Activity.class));
                             finish();
                         } else {
                             Toast.makeText(LogIn.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

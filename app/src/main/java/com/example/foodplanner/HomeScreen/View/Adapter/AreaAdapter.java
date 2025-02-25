@@ -1,4 +1,4 @@
-package com.example.foodplanner.HomeScreen.View;
+package com.example.foodplanner.HomeScreen.View.Adapter;
 
 import android.content.Context;
 import android.content.Intent;

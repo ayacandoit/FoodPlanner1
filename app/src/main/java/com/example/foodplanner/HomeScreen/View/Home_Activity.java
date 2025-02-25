@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.HomeScreen.Model.Area;
 import com.example.foodplanner.HomeScreen.Model.Category;
 import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.Adapter.AreaAdapter;
+import com.example.foodplanner.HomeScreen.View.Adapter.CategoryAdapter;
+import com.example.foodplanner.HomeScreen.View.Adapter.RandomAdapter;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
 import com.example.foodplanner.Model.Repositry;
 import com.example.foodplanner.Presnter.AreaPresenter;
@@ -24,7 +27,7 @@ import com.example.foodplanner.View.MealView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomRecipeReciclerV extends AppCompatActivity implements MealView, CategoryView, AreaView {
+public class Home_Activity extends AppCompatActivity implements MealView, CategoryView, AreaView {
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
     private RecyclerView recyclerViewRecipes, recyclerViewCategories,recyclerViewArreaes;
     private RandomAdapter recipeAdapter;
