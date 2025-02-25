@@ -1,6 +1,8 @@
 package com.example.foodplanner;
 
-public class Area {
+import java.io.Serializable;
+
+public class Area implements Serializable {
     public String strArea;
 
     public Area(String strArea) {

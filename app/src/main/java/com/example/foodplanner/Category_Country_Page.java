@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -37,8 +38,12 @@ public class Category_Country_Page extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         String category = getIntent().getStringExtra("category");
 
+        String country = getIntent().getStringExtra("country");
+
         if (category != null) {
             fetchRecipesByCategory(category);
+        } else if (country != null) {
+            fetchRecipesByArea(country);
         }
     }
 
@@ -63,6 +68,31 @@ public class Category_Country_Page extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RecipeResponse> call, Throwable t) {
+                Toast.makeText(Category_Country_Page.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void fetchRecipesByArea(String area) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RecipeApi recipeApi = retrofit.create(RecipeApi.class);
+        Call<RecipeResponse> call = recipeApi.getMealsByArea(area);
+
+        call.enqueue(new Callback<RecipeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<RecipeResponse> call, @NonNull Response<RecipeResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Recipe> recipes = response.body().getMeals();
+                    adapter = new RandomAdapter(recipes,Category_Country_Page.this);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<RecipeResponse> call, @NonNull Throwable t) {
                 Toast.makeText(Category_Country_Page.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }
         });

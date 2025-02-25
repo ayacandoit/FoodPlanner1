@@ -20,6 +20,9 @@ public  interface RecipeApi {
     @GET("filter.php")
     Call<RecipeResponse> getRecipesByCategory(@Query("c") String category);
 
+    @GET("filter.php")
+    Call<RecipeResponse> getMealsByArea(@Query("a") String area);
+
 
 
 
