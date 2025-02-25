@@ -1,4 +1,4 @@
-package com.example.foodplanner.View;
+package com.example.foodplanner.HomeScreen.View;
 
 
 
@@ -16,9 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Category_Country_Page;
-import com.example.foodplanner.MealActivity;
-import com.example.foodplanner.Model.Category;
+import com.example.foodplanner.Country_Area_Page.Category_Country_Page;
+import com.example.foodplanner.HomeScreen.Model.Category;
 import com.example.foodplanner.R;
 
 

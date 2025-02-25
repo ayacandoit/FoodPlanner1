@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Login;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,7 +13,9 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodplanner.View.RandomRecipeReciclerV;
+import com.example.foodplanner.R;
+import com.example.foodplanner.Register.RegisterScreen;
+import com.example.foodplanner.HomeScreen.View.RandomRecipeReciclerV;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

@@ -1,19 +1,17 @@
-package com.example.foodplanner.View;
+package com.example.foodplanner.HomeScreen.View;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodplanner.Area;
-import com.example.foodplanner.Category_Country_Page;
-import com.example.foodplanner.Model.Category;
+import com.example.foodplanner.Country_Area_Page.Category_Country_Page;
+import com.example.foodplanner.HomeScreen.Model.Area;
 import com.example.foodplanner.R;
 
 import java.util.ArrayList;

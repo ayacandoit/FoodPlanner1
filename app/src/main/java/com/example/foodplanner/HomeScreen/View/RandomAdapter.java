@@ -1,6 +1,4 @@
-package com.example.foodplanner.View;
-
-import static androidx.core.content.ContextCompat.startActivity;
+package com.example.foodplanner.HomeScreen.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.LogIn;
-import com.example.foodplanner.MealActivity;
-import com.example.foodplanner.Model.Recipe;
+import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.DetailsScreen.MealActivity;
 import com.example.foodplanner.R;
 
 

@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.DetailsScreen;
 
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -7,14 +7,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.DetailsScreen.View.IngredientAdapter;
+import com.example.foodplanner.HomeScreen.Model.RecipeResponse;
 import com.example.foodplanner.Model.Network.RecipeApi;
-import com.example.foodplanner.Model.Recipe;
+import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +102,7 @@ public class MealActivity extends AppCompatActivity {
                     measures.add(measure);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
         }
 

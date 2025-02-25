@@ -7,9 +7,9 @@ import android.os.Handler;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodplanner.LogIn;
+import com.example.foodplanner.Login.LogIn;
 import com.example.foodplanner.R;
-import com.example.foodplanner.RegisterScreen;
+import com.example.foodplanner.Register.RegisterScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

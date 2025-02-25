@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Category_Country_Page">
+    tools:context=".Country_Area_Page.Category_Country_Page">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allrv"

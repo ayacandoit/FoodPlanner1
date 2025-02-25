@@ -1,4 +1,4 @@
-package com.example.foodplanner.Model;
+package com.example.foodplanner.HomeScreen.Model;
 
 import java.io.Serializable;
 

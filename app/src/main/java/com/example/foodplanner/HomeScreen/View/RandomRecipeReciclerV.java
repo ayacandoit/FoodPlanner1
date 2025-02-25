@@ -1,4 +1,4 @@
-package com.example.foodplanner.View;
+package com.example.foodplanner.HomeScreen.View;
 
 import android.os.Bundle;
 
@@ -8,26 +8,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.foodplanner.Area;
-import com.example.foodplanner.Model.Category;
+import com.example.foodplanner.HomeScreen.Model.Area;
+import com.example.foodplanner.HomeScreen.Model.Category;
+import com.example.foodplanner.HomeScreen.Model.Recipe;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
-import com.example.foodplanner.Model.Recipe;
 import com.example.foodplanner.Model.Repositry;
 import com.example.foodplanner.Presnter.AreaPresenter;
 import com.example.foodplanner.Presnter.CategoryPresenter;
 import com.example.foodplanner.Presnter.HomePresenter;
 import com.example.foodplanner.R;
+import com.example.foodplanner.View.AreaView;
+import com.example.foodplanner.View.CategoryView;
+import com.example.foodplanner.View.MealView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class RandomRecipeReciclerV extends AppCompatActivity implements MealView, CategoryView, AreaView{
+public class RandomRecipeReciclerV extends AppCompatActivity implements MealView, CategoryView, AreaView {
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
     private RecyclerView recyclerViewRecipes, recyclerViewCategories,recyclerViewArreaes;
     private RandomAdapter recipeAdapter;

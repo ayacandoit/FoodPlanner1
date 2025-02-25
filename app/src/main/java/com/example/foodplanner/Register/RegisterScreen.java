@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Register;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodplanner.Login.LogIn;
+import com.example.foodplanner.MainActivity;
+import com.example.foodplanner.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterScreen extends AppCompatActivity {

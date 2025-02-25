@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="top|center"
     android:layout_marginHorizontal="30dp"
-    android:layout_marginVertical="16dp">  <!-- Centers all children inside -->
+    android:layout_marginVertical="16dp">
 
     <TextView
         android:layout_width="wrap_content"

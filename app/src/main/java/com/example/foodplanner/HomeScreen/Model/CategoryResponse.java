@@ -1,6 +1,5 @@
-package com.example.foodplanner;
+package com.example.foodplanner.HomeScreen.Model;
 
-import com.example.foodplanner.Model.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

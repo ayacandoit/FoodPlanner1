@@ -1,6 +1,4 @@
-package com.example.foodplanner;
-
-import com.example.foodplanner.Model.Recipe;
+package com.example.foodplanner.HomeScreen.Model;
 
 import java.util.List;
 

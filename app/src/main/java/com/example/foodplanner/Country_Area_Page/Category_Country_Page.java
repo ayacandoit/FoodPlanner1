@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Country_Area_Page;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,15 +6,14 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.HomeScreen.Model.RecipeResponse;
 import com.example.foodplanner.Model.Network.RecipeApi;
-import com.example.foodplanner.Model.Recipe;
-import com.example.foodplanner.View.RandomAdapter;
+import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.RandomAdapter;
+import com.example.foodplanner.R;
 
 import java.util.List;
 
