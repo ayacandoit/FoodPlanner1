@@ -5,6 +5,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,64 +13,104 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.Model.Network.RecipeApi;
 import com.example.foodplanner.Model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MealActivity extends AppCompatActivity {
+
+
+    private TextView nameTextView, categoryTextView, areaTextView, instructionsTextView;
+    private ImageView imageView;
+    private RecyclerView ingredientsRecyclerView;
+    private WebView myWeb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.meal);
 
-        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipe");
+        nameTextView = findViewById(R.id.recipeName);
+        categoryTextView = findViewById(R.id.DishName);
+        areaTextView = findViewById(R.id.Description);
+        instructionsTextView = findViewById(R.id.instruction);
+        imageView = findViewById(R.id.mealImage);
+        ingredientsRecyclerView = findViewById(R.id.ingerdents);
+        myWeb = findViewById(R.id.webView);
 
-        if (recipe != null) {
-            TextView nameTextView = findViewById(R.id.recipeName);
-            TextView categoryTextView = findViewById(R.id.DishName);
-            TextView areaTextView = findViewById(R.id.Description);
-            TextView instructionsTextView = findViewById(R.id.instruction);
-            ImageView imageView = findViewById(R.id.mealImage);
-            RecyclerView ingredientsRecyclerView = findViewById(R.id.ingerdents);
-            WebView myWeb = findViewById(R.id.webView);
+        String recipeId = getIntent().getStringExtra("recipeId");
 
-            nameTextView.setText(recipe.getStrMeal());
-            categoryTextView.setText("Category: " + recipe.getStrCategory());
-            areaTextView.setText("Area: " + recipe.getStrArea());
-            instructionsTextView.setText(recipe.getStrInstructions());
-            Glide.with(this).load(recipe.getStrMealThumb()).into(imageView);
+        if (recipeId != null) {
+            fetchMealDetails(recipeId);
+        }
+    }
 
+    private void fetchMealDetails(String recipeId) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-            List<String> ingredients = new ArrayList<>();
-            List<String> measures = new ArrayList<>();
+        RecipeApi recipeApi = retrofit.create(RecipeApi.class);
+        Call<RecipeResponse> call = recipeApi.getMealById(recipeId);
 
-            for (int i = 1; i <= 20; i++) {
-                try {
-                    String ingredient = (String) Recipe.class.getMethod("getStrIngredient" + i).invoke(recipe);
-                    String measure = (String) Recipe.class.getMethod("getStrMeasure" + i).invoke(recipe);
-
-                    if (ingredient != null && !ingredient.trim().isEmpty()) {
-                        ingredients.add(ingredient);
-                        measures.add(measure);
+        call.enqueue(new Callback<RecipeResponse>() {
+            @Override
+            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Recipe> meals = response.body().getMeals();
+                    if (meals != null && !meals.isEmpty()) {
+                        displayMealDetails(meals.get(0));
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
 
+            @Override
+            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+                Toast.makeText(MealActivity.this, "Failed to load meal details", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-            ingredientsRecyclerView.setLayoutManager(layoutManager);
-            IngredientAdapter adapter = new IngredientAdapter(this, ingredients, measures);
-            ingredientsRecyclerView.setAdapter(adapter);
+    private void displayMealDetails(Recipe recipe) {
+        nameTextView.setText(recipe.getStrMeal());
+        categoryTextView.setText("Category: " + recipe.getStrCategory());
+        areaTextView.setText("Area: " + recipe.getStrArea());
+        instructionsTextView.setText(recipe.getStrInstructions());
+        Glide.with(this).load(recipe.getStrMealThumb()).into(imageView);
 
-           myWeb.getSettings().setJavaScriptEnabled(true);
-           myWeb.setWebViewClient(new WebViewClient());
-           String url =(recipe.getStrYoutube()+recipe.getStrYoutube());
-           myWeb.loadUrl(url);
+        List<String> ingredients = new ArrayList<>();
+        List<String> measures = new ArrayList<>();
+
+        for (int i = 1; i <= 20; i++) {
+            try {
+                String ingredient = (String) Recipe.class.getMethod("getStrIngredient" + i).invoke(recipe);
+                String measure = (String) Recipe.class.getMethod("getStrMeasure" + i).invoke(recipe);
+
+                if (ingredient != null && !ingredient.trim().isEmpty()) {
+                    ingredients.add(ingredient);
+                    measures.add(measure);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        ingredientsRecyclerView.setLayoutManager(layoutManager);
+        IngredientAdapter adapter = new IngredientAdapter(this, ingredients, measures);
+        ingredientsRecyclerView.setAdapter(adapter);
+
+        myWeb.getSettings().setJavaScriptEnabled(true);
+        myWeb.setWebViewClient(new WebViewClient());
+        myWeb.loadUrl(recipe.getStrYoutube());
     }
 }

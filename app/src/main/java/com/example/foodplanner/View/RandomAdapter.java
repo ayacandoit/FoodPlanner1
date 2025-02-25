@@ -52,7 +52,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, MealActivity.class);
-            intent.putExtra("recipe", recipe);
+            intent.putExtra("recipeId", recipe.getIdMeal());
             context.startActivity(intent);
         });
 

@@ -22,6 +22,9 @@ public  interface RecipeApi {
 
     @GET("filter.php")
     Call<RecipeResponse> getMealsByArea(@Query("a") String area);
+    @GET("lookup.php")
+    Call<RecipeResponse> getMealById(@Query("i") String mealId);
+
 
 
 
