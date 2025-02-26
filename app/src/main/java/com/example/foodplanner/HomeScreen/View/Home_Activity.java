@@ -73,7 +73,6 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
         areaPresenter.getAllArea();
-        bottomNavigationView.setSelectedItemId(R.id.favotrite);
 
 
 
