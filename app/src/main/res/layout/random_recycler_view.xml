@@ -61,10 +61,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/arv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height=""
         android:clipToPadding="false"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         tools:listitem="@layout/random_recipe_item" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menue_bar"/>
+
+
+
 
 </LinearLayout>

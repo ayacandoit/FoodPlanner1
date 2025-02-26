@@ -27,7 +27,7 @@
             android:name=".HomeScreen.View.Home_Activity"
             android:exported="false" />
         <activity
-            android:name=".Login.LogIn"
+            android:name=".Login.View.LogIn"
             android:exported="false" />
         <activity
             android:name=".Register.View.RegisterScreen"

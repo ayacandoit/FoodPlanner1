@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodplanner.Login.LogIn;
+import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.R;
 import com.example.foodplanner.Register.Model.RegisterModel;
 import com.example.foodplanner.Register.Presenter.RegisterPresenter;

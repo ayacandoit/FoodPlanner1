@@ -4,6 +4,8 @@ package com.example.foodplanner.HomeScreen.Model;
 import java.io.Serializable;
 
 public class Recipe implements Serializable {
+
+
     public String idMeal;
     public String strMeal;
 
