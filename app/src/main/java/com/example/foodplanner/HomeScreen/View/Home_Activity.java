@@ -1,8 +1,10 @@
 package com.example.foodplanner.HomeScreen.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.View.AreaView;
 import com.example.foodplanner.View.CategoryView;
 import com.example.foodplanner.View.MealView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
     private RandomAdapter recipeAdapter;
     private CategoryAdapter categoryAdapter;
     private AreaAdapter areaAdapter;
+    BottomNavigationView bottomNavigationView;
 
     private List<Recipe> recipeList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
@@ -47,6 +51,8 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         HomePresenter homePresenter =new HomePresenter(this, Repositry.getInstance(MealRemoteDataSource.getInstance()));
         CategoryPresenter categoryPresenter=new CategoryPresenter(Repositry.getInstance( MealRemoteDataSource.getInstance()),this);
         AreaPresenter areaPresenter=new AreaPresenter(Repositry.getInstance(MealRemoteDataSource.getInstance()),this);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+
         recyclerViewRecipes = findViewById(R.id.rrv);
         recyclerViewCategories = findViewById(R.id.crv);
         recyclerViewArreaes=findViewById(R.id.arv);
@@ -67,6 +73,11 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
         areaPresenter.getAllArea();
+        bottomNavigationView.setSelectedItemId(R.id.favotrite);
+
+
+
+
 
     }
 

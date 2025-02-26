@@ -1,11 +1,16 @@
 package com.example.foodplanner.HomeScreen.Model;
 
 
-import java.io.Serializable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+@Entity(tableName = "favorite_recipes")
 public class Recipe implements Serializable {
 
-
+    @PrimaryKey
+    @NonNull
     public String idMeal;
     public String strMeal;
 
