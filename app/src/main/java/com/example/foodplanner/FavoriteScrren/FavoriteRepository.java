@@ -26,7 +26,7 @@ public class FavoriteRepository {
 
 
     public void addToFavorites(Recipe recipe) {
-        Executors.newSingleThreadExecutor().execute(() -> recipeDao.insertFavorite(recipe));
+        new Thread(()->recipeDao.insertFavorite(recipe)).start();
     }
 
     public LiveData<List<Recipe>> getAllFavorites() {
@@ -38,7 +38,7 @@ public class FavoriteRepository {
     }
 
     public void removeFromFavorites(String id) {
-        Executors.newSingleThreadExecutor().execute(() -> recipeDao.deleteById(id));
+        new Thread(()->recipeDao.deleteById(id)).start();
     }
 }
 
