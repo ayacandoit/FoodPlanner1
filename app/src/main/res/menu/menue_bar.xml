@@ -12,6 +12,9 @@
     <item android:id="@+id/calander"
         android:icon="@drawable/calendar"
         android:title="Calander"/>
+    <item android:id="@+id/Logout"
+        android:icon="@drawable/calendar"
+        android:title="Calander"/>
 
 
 

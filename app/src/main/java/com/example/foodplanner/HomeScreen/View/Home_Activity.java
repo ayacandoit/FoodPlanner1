@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
+import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.Model.Area;
 import com.example.foodplanner.HomeScreen.Model.Category;
 import com.example.foodplanner.HomeScreen.Model.Recipe;
@@ -37,6 +39,7 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
     private CategoryAdapter categoryAdapter;
     private AreaAdapter areaAdapter;
     BottomNavigationView bottomNavigationView;
+    RecipeDatabase recipeDatabase;
 
     private List<Recipe> recipeList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
@@ -52,6 +55,8 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         CategoryPresenter categoryPresenter=new CategoryPresenter(Repositry.getInstance( MealRemoteDataSource.getInstance()),this);
         AreaPresenter areaPresenter=new AreaPresenter(Repositry.getInstance(MealRemoteDataSource.getInstance()),this);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
 
         recyclerViewRecipes = findViewById(R.id.rrv);
         recyclerViewCategories = findViewById(R.id.crv);
@@ -73,6 +78,26 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
         areaPresenter.getAllArea();
+//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//
+//            int itemId = item.getItemId();
+//
+//            if (itemId == R.id.favotrite) {
+//                Intent intent=new Intent(Home_Activity.this, FavoriteScreen.class);
+//                startActivity(intent);
+//            } else if (itemId == R.id.Logout) {
+//                RecipeDatabase.deleteDatabase(this);
+//                startActivity();
+//
+//            } else if (itemId == R.id.navigation_notifications) {
+//                startActivity(intent);
+//
+//            } else if (itemId == R.id.navigation_notifications) {
+//                startActivity(intent);
+//
+//            }
+//            return true;
+//        });
 
 
 

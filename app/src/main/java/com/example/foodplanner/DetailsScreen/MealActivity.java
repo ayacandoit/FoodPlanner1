@@ -41,6 +41,7 @@ public class MealActivity extends AppCompatActivity {
     private  ImageView favoriteIcon;
     Recipe recipe;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class MealActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
 
 
 

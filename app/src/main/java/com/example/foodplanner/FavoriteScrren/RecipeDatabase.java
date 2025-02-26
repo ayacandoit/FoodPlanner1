@@ -9,7 +9,7 @@ import com.example.foodplanner.HomeScreen.Model.Recipe;
 
 @Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
-
+public static String dataBaseName="recipe_database";
     private static volatile RecipeDatabase INSTANCE;
 
     public abstract RecipeDao recipeDao();
@@ -19,13 +19,22 @@ public abstract class RecipeDatabase extends RoomDatabase {
             synchronized (RecipeDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    RecipeDatabase.class, "recipe_database")
+                                    RecipeDatabase.class, dataBaseName)
                             .fallbackToDestructiveMigration()
                             .build();
                 }
             }
         }
         return INSTANCE;
+    }
+
+    public static void deleteDatabase(Context context){
+        if(INSTANCE!=null){
+            INSTANCE.close();
+            INSTANCE=null;
+        }
+        context.deleteDatabase(dataBaseName);
+
     }
 }
 
