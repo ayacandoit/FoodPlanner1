@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealActivity extends AppCompatActivity {
 
-
+//commit
     private TextView nameTextView, categoryTextView, areaTextView, instructionsTextView;
     private ImageView imageView;
     private RecyclerView ingredientsRecyclerView;
