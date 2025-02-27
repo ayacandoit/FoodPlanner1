@@ -13,7 +13,7 @@
         android:icon="@drawable/calendar"
         android:title="Calander"/>
     <item android:id="@+id/Logout"
-        android:icon="@drawable/calendar"
+        android:icon="@drawable/exit"
         android:title="Calander"/>
 
 

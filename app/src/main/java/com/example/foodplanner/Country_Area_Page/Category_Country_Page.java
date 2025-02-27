@@ -1,5 +1,7 @@
 package com.example.foodplanner.Country_Area_Page;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -9,11 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.Calander.Calander;
+import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
+import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.Model.RecipeResponse;
+import com.example.foodplanner.HomeScreen.View.Home_Activity;
+import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.Model.Network.RecipeApi;
 import com.example.foodplanner.HomeScreen.Model.Recipe;
 import com.example.foodplanner.HomeScreen.View.Adapter.RandomAdapter;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SearchScreen.Search;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -27,6 +36,8 @@ public class Category_Country_Page extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RandomAdapter adapter;
+    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,48 @@ public class Category_Country_Page extends AppCompatActivity {
         } else if (country != null) {
             fetchRecipesByArea(country);
         }
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.favotrite) {
+                Intent intent=new Intent(Category_Country_Page.this, FavoriteScreen.class);
+                startActivity(intent);
+            } else if (itemId == R.id.Logout) {
+                RecipeDatabase.deleteDatabase(this);
+
+                SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(this, LogIn.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                finish();
+            }
+
+
+            else if (itemId ==R.id.home) {
+                Intent intent=new Intent(Category_Country_Page.this, Home_Activity.class);
+                startActivity(intent);
+
+            }
+            else if (itemId == R.id.calander) {
+                Intent intent=new Intent(Category_Country_Page.this, Calander.class);
+                startActivity(intent);
+
+            }
+            else if (itemId == R.id.search) {
+                Intent intent=new Intent(Category_Country_Page.this, Search.class);
+                startActivity(intent);
+
+            }
+            return true;
+        });
     }
 
     private void fetchRecipesByCategory(String category) {
