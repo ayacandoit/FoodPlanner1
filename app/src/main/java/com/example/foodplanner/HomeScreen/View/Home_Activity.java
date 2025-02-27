@@ -1,6 +1,7 @@
 package com.example.foodplanner.HomeScreen.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.foodplanner.Calander.Calander;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
 import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.Model.Area;
@@ -18,12 +20,14 @@ import com.example.foodplanner.HomeScreen.Model.Recipe;
 import com.example.foodplanner.HomeScreen.View.Adapter.AreaAdapter;
 import com.example.foodplanner.HomeScreen.View.Adapter.CategoryAdapter;
 import com.example.foodplanner.HomeScreen.View.Adapter.RandomAdapter;
+import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.Model.Network.MealRemoteDataSource;
 import com.example.foodplanner.Model.Repositry;
 import com.example.foodplanner.Presnter.AreaPresenter;
 import com.example.foodplanner.Presnter.CategoryPresenter;
 import com.example.foodplanner.Presnter.HomePresenter;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SearchScreen.Search;
 import com.example.foodplanner.View.AreaView;
 import com.example.foodplanner.View.CategoryView;
 import com.example.foodplanner.View.MealView;
@@ -78,26 +82,46 @@ public class Home_Activity extends AppCompatActivity implements MealView, Catego
         homePresenter.getRandomMeal();
         categoryPresenter.getAllCategory();
         areaPresenter.getAllArea();
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//
-//            int itemId = item.getItemId();
-//
-//            if (itemId == R.id.favotrite) {
-//                Intent intent=new Intent(Home_Activity.this, FavoriteScreen.class);
-//                startActivity(intent);
-//            } else if (itemId == R.id.Logout) {
-//                RecipeDatabase.deleteDatabase(this);
-//                startActivity();
-//
-//            } else if (itemId == R.id.navigation_notifications) {
-//                startActivity(intent);
-//
-//            } else if (itemId == R.id.navigation_notifications) {
-//                startActivity(intent);
-//
-//            }
-//            return true;
-//        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.favotrite) {
+                Intent intent=new Intent(Home_Activity.this, FavoriteScreen.class);
+                startActivity(intent);
+            } else if (itemId == R.id.Logout) {
+                RecipeDatabase.deleteDatabase(this);
+
+                SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(this, LogIn.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                finish();
+            }
+
+
+             else if (itemId ==R.id.home) {
+                Intent intent=new Intent(Home_Activity.this, Home_Activity.class);
+                startActivity(intent);
+
+           }
+             else if (itemId == R.id.calander) {
+                Intent intent=new Intent(Home_Activity.this, Calander.class);
+                startActivity(intent);
+
+            }
+            else if (itemId == R.id.search) {
+                Intent intent=new Intent(Home_Activity.this, Search.class);
+                startActivity(intent);
+
+            }
+            return true;
+        });
 
 
 
