@@ -1,8 +1,9 @@
 package com.example.foodplanner.Presnter;
 
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 import com.example.foodplanner.Model.Network.RandomMealNetworkCallBack;
 import com.example.foodplanner.Model.Repositry;
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+
 import com.example.foodplanner.View.MealView;
 
 import java.util.List;

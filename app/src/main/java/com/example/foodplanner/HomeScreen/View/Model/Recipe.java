@@ -1,4 +1,4 @@
-package com.example.foodplanner.HomeScreen.Model;
+package com.example.foodplanner.HomeScreen.View.Model;
 
 
 import androidx.annotation.NonNull;
@@ -551,4 +551,3 @@ public class Recipe implements Serializable {
     public String strCreativeCommonsConfirmed;
     public String dateModified;
 }
-

@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Calander.Calander;
-import com.example.foodplanner.FavoriteScrren.FavoriteRepository;
-import com.example.foodplanner.HomeScreen.Model.Recipe;
-import com.example.foodplanner.HomeScreen.View.Adapter.RandomAdapter;
-import com.example.foodplanner.HomeScreen.View.Home_Activity;
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.View.Adapter.RandomAdapter;
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.R;
 import com.example.foodplanner.SearchScreen.Search;

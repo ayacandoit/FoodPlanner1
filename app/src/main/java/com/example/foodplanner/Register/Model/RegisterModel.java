@@ -2,8 +2,10 @@ package com.example.foodplanner.Register.Model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
-import com.example.foodplanner.HomeScreen.View.Home_Activity;
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
+import com.example.foodplanner.Register.View.RegisterScreen;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterModel {
@@ -23,7 +25,6 @@ public class RegisterModel {
 //
 //                        finish();
                     } else {
-                        //listener.onFailure("Failed to create account: ");
                         //Toast.makeText(RegisterScreen.this, "Failed to create account: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

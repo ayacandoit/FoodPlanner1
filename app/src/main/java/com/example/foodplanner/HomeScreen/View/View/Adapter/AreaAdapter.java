@@ -1,4 +1,4 @@
-package com.example.foodplanner.HomeScreen.View.Adapter;
+package com.example.foodplanner.HomeScreen.View.View.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Country_Area_Page.Category_Country_Page;
-import com.example.foodplanner.HomeScreen.Model.Area;
+
+import com.example.foodplanner.HomeScreen.View.Model.Area;
 import com.example.foodplanner.R;
 
 import java.util.ArrayList;
@@ -21,21 +22,21 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     private List<Area> areaList=new ArrayList<>();
 
     private Context context;
-    public AreaAdapter( Context context) {
-
+    public AreaAdapter(List<Area> AreaList, Context context) {
+        areaList=AreaList;
         this.context = context;
     }
 
 
     @NonNull
     @Override
-    public AreaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.area_item, parent, false);
-        return new AreaAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AreaAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Area area = areaList.get(position);
         holder.areaName.setText(area.getStrArea());
         holder.itemView.setOnClickListener(v -> {

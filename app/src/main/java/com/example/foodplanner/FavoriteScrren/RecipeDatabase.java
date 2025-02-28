@@ -5,7 +5,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 
 @Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {

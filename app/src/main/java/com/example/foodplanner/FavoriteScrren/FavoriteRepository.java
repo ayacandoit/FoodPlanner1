@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+
 
 import java.util.List;
 
@@ -12,7 +12,8 @@ import java.util.List;
 import android.content.Context;
 import androidx.lifecycle.LiveData;
 
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 import java.util.List;
 import java.util.concurrent.Executors;
 

@@ -1,5 +1,4 @@
-package com.example.foodplanner.Model.Network;
-
+package com.example.foodplanner.NetworkLayer;
 
 
 import com.example.foodplanner.HomeScreen.View.Model.AreaResponse;
@@ -10,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public  interface RecipeApi {
+public interface ApiInterface {
 
     @GET("random.php")
     Call<RecipeResponse> getRandomRecipe();
@@ -26,13 +25,4 @@ public  interface RecipeApi {
     Call<RecipeResponse> getMealsByArea(@Query("a") String area);
     @GET("lookup.php")
     Call<RecipeResponse> getMealById(@Query("i") String mealId);
-
-
-
-
-
-
-
-
-
 }

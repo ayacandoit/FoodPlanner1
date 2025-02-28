@@ -2,14 +2,8 @@ package com.example.foodplanner.Login.Model;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.example.foodplanner.HomeScreen.View.Home_Activity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginModel {

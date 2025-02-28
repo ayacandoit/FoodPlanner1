@@ -6,7 +6,8 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 
 import java.util.List;
 @Dao

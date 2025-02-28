@@ -1,4 +1,4 @@
-package com.example.foodplanner.HomeScreen.View.Adapter;
+package com.example.foodplanner.HomeScreen.View.View.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.HomeScreen.Model.Recipe;
 import com.example.foodplanner.DetailsScreen.MealActivity;
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 import com.example.foodplanner.R;
-
 
 import java.util.List;
 

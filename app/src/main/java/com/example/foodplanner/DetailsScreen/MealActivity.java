@@ -19,11 +19,13 @@ import com.example.foodplanner.DetailsScreen.View.IngredientAdapter;
 import com.example.foodplanner.FavoriteScrren.FavoriteRepository;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
 import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
-import com.example.foodplanner.HomeScreen.Model.RecipeResponse;
-import com.example.foodplanner.HomeScreen.View.Home_Activity;
+
+import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+import com.example.foodplanner.HomeScreen.View.Model.RecipeResponse;
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.Model.Network.RecipeApi;
-import com.example.foodplanner.HomeScreen.Model.Recipe;
+
 import com.example.foodplanner.R;
 import com.example.foodplanner.SearchScreen.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
