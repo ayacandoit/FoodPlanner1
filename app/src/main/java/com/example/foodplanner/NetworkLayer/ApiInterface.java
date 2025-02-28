@@ -5,6 +5,7 @@ import com.example.foodplanner.HomeScreen.View.Model.AreaResponse;
 import com.example.foodplanner.HomeScreen.View.Model.CategoryResponse;
 import com.example.foodplanner.HomeScreen.View.Model.RecipeResponse;
 
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -12,17 +13,17 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @GET("random.php")
-    Call<RecipeResponse> getRandomRecipe();
+    Observable<RecipeResponse> getRandomRecipe();
 
     @GET("categories.php")
-    Call<CategoryResponse> getCategories();
+    Observable<CategoryResponse> getCategories();
     @GET("list.php?a=list")
-    Call<AreaResponse>getAreaes();
+    Observable<AreaResponse>getAreaes();
     @GET("filter.php")
-    Call<RecipeResponse> getRecipesByCategory(@Query("c") String category);
+    Observable<RecipeResponse> getRecipesByCategory(@Query("c") String category);
 
     @GET("filter.php")
-    Call<RecipeResponse> getMealsByArea(@Query("a") String area);
+    Observable<RecipeResponse> getMealsByArea(@Query("a") String area);
     @GET("lookup.php")
-    Call<RecipeResponse> getMealById(@Query("i") String mealId);
+    Observable<RecipeResponse> getMealById(@Query("i") String mealId);
 }

@@ -16,7 +16,6 @@ import com.example.foodplanner.Login.Model.LoginModel;
 import com.example.foodplanner.Login.Presenter.LoginPresenter;
 import com.example.foodplanner.R;
 import com.example.foodplanner.Register.View.RegisterScreen;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class LogIn extends AppCompatActivity implements LoginPresenter {
     EditText emailEditTxt, passwordEditTxt;
