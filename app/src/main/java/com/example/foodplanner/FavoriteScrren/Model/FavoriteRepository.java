@@ -1,19 +1,11 @@
-package com.example.foodplanner.FavoriteScrren;
-
-import android.content.Context;
-
-import androidx.lifecycle.LiveData;
-
-
-
-import java.util.List;
-
+package com.example.foodplanner.FavoriteScrren.Model;
 
 import android.content.Context;
 import androidx.lifecycle.LiveData;
 
+import com.example.foodplanner.FavoriteScrren.RecipeDao;
+import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
-
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -25,9 +17,8 @@ public class FavoriteRepository {
         recipeDao = db.recipeDao();
     }
 
-
     public void addToFavorites(Recipe recipe) {
-        new Thread(()->recipeDao.insertFavorite(recipe)).start();
+        Executors.newSingleThreadExecutor().execute(() -> recipeDao.insertFavorite(recipe));
     }
 
     public LiveData<List<Recipe>> getAllFavorites() {
@@ -39,7 +30,6 @@ public class FavoriteRepository {
     }
 
     public void removeFromFavorites(String id) {
-        new Thread(()->recipeDao.deleteById(id)).start();
+        Executors.newSingleThreadExecutor().execute(() -> recipeDao.deleteById(id));
     }
 }
-

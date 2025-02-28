@@ -1,4 +1,4 @@
-package com.example.foodplanner.FavoriteScrren;
+package com.example.foodplanner.FavoriteScrren.Model;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.Calander.Calander;
 
-import com.example.foodplanner.FavoriteScrren.Model.FavoriteRepository;
+import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoriteBridge;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoritePresenter;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
