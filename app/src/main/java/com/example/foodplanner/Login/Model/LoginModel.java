@@ -12,17 +12,21 @@ public class LoginModel {
     public LoginModel() {
         firebaseAuth = FirebaseAuth.getInstance();
     }
-    public void logInAccountInFirebase(String email, String password, Context context) {
+    public void logInAccountInFirebase(String email, String password, OnLoginListener loginListener) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task ->  {
 
                         if (task.isSuccessful()) {
-                            context.startActivity(new Intent(context, Home_Activity.class));
+                            loginListener.onSuccess();
 
                         } else {
-                           // Toast.makeText(LogIn.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            loginListener.onFailure(task.getException().getMessage());
                         }
 
                 });
+    }
+    public interface OnLoginListener {
+        void onSuccess();
+        void onFailure(String errorMessage);
     }
 }

@@ -8,22 +8,28 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.Model.LoginModel;
+import com.example.foodplanner.Login.Presenter.Bridge;
 import com.example.foodplanner.Login.Presenter.LoginPresenter;
 import com.example.foodplanner.R;
+import com.example.foodplanner.Register.Presenter.RegisterPresenter;
 import com.example.foodplanner.Register.View.RegisterScreen;
 
-public class LogIn extends AppCompatActivity implements LoginPresenter {
+public class LogIn extends AppCompatActivity implements Bridge.View {
     EditText emailEditTxt, passwordEditTxt;
     Button logInBtn;
     TextView signUpTxt;
 
     LoginModel loginModel=new LoginModel();
     Context context;
+    private LoginPresenter presenter;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +42,7 @@ public class LogIn extends AppCompatActivity implements LoginPresenter {
         passwordEditTxt = findViewById(R.id.PasswordEditText2);
         logInBtn = findViewById(R.id.signinBtn);
         signUpTxt = findViewById(R.id.SignUpTxt);
+        presenter=new LoginPresenter(this);
 
 
         context=this;
@@ -51,7 +58,7 @@ public class LogIn extends AppCompatActivity implements LoginPresenter {
         if (!validateData(email, password)) {
             return;
         }
-        LogeinUser2(email,password,context);
+        presenter.LogIn(email,password,password);
     }
 
 //    void logInAccountInFirebase(String email, String password) {
@@ -82,9 +89,20 @@ public class LogIn extends AppCompatActivity implements LoginPresenter {
         return true;
     }
 
+
     @Override
-    public void LogeinUser2(String email, String password, Context context) {
-        loginModel.logInAccountInFirebase(email,password,context);
+    public void onLoginSuccess() {
+        Toast.makeText(LogIn.this, "Login successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LogIn.this, Home_Activity.class);
+        startActivity(intent);
+        finish();
+
+    }
+
+    @Override
+    public void onLoginFailure(String message) {
+        Toast.makeText(LogIn.this, "Failed to login " + message, Toast.LENGTH_LONG).show();
+
 
     }
 }

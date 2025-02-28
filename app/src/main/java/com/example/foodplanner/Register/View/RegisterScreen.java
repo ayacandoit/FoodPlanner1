@@ -13,8 +13,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodplanner.HomeScreen.View.Home_Activity;
-import com.example.foodplanner.Login.LogIn;
+
+import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
+import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.R;
 import com.example.foodplanner.Register.Model.RegisterModel;
 import com.example.foodplanner.Register.Presenter.Bridge;
