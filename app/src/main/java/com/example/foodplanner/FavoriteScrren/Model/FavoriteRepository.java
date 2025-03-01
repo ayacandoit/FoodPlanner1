@@ -1,13 +1,17 @@
 package com.example.foodplanner.FavoriteScrren.Model;
 
 import android.content.Context;
-import androidx.lifecycle.LiveData;
 
 import com.example.foodplanner.FavoriteScrren.RecipeDao;
 import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 import java.util.List;
-import java.util.concurrent.Executors;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FavoriteRepository {
     private RecipeDao recipeDao;
@@ -17,19 +21,27 @@ public class FavoriteRepository {
         recipeDao = db.recipeDao();
     }
 
-    public void addToFavorites(Recipe recipe) {
-        Executors.newSingleThreadExecutor().execute(() -> recipeDao.insertFavorite(recipe));
+    // Add a recipe to favorites
+    public Completable addToFavorites(Recipe recipe) {
+        return recipeDao.insertFavorite(recipe)
+                .subscribeOn(Schedulers.io());
     }
 
-    public LiveData<List<Recipe>> getAllFavorites() {
-        return recipeDao.getAllFavorites();
+    // Get all favorite recipes
+    public Flowable<List<Recipe>> getAllFavorites() {
+        return recipeDao.getAllFavorites()
+                .subscribeOn(Schedulers.io());
     }
 
-    public LiveData<Integer> isFavorite(String id) {
-        return recipeDao.isFavorite(id);
+    // Check if a recipe is favorite
+    public Single<Integer> isFavorite(String id) {
+        return recipeDao.isFavorite(id)
+                .subscribeOn(Schedulers.io());
     }
 
-    public void removeFromFavorites(String id) {
-        Executors.newSingleThreadExecutor().execute(() -> recipeDao.deleteById(id));
+    // Remove a recipe from favorites
+    public Completable removeFromFavorites(String id) {
+        return recipeDao.deleteById(id)
+                .subscribeOn(Schedulers.io());
     }
 }

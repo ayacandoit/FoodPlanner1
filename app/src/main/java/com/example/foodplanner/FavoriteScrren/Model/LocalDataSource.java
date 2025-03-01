@@ -1,14 +1,15 @@
 package com.example.foodplanner.FavoriteScrren.Model;
 
 
-
 import android.content.Context;
-import androidx.lifecycle.LiveData;
 
 import com.example.foodplanner.FavoriteScrren.RecipeDao;
 import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Flowable;
 
 public class LocalDataSource {
     private RecipeDao recipeDao;
@@ -22,7 +23,7 @@ public class LocalDataSource {
         recipeDao.insertFavorite(recipe);
     }
 
-    public LiveData<List<Recipe>> getAllFavorites() {
+    public Flowable<List<Recipe>> getAllFavorites() {
         return recipeDao.getAllFavorites();
     }
 

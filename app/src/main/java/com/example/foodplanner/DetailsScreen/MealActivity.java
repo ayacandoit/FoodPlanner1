@@ -31,6 +31,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class MealActivity extends AppCompatActivity implements DetailsScreenBridge.View {
 
     private TextView nameTextView, categoryTextView, areaTextView, instructionsTextView;
@@ -100,13 +103,42 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
 
     private void setupFavoriteIcon(String recipeId) {
         favoriteIcon.setOnClickListener(view -> {
-            favoriteRepository.isFavorite(recipeId).observe(this, isFav -> {
-                if (isFav != null && isFav > 0) {
-                    favoriteRepository.removeFromFavorites(recipe.idMeal);
-                } else {
-                    favoriteRepository.addToFavorites(recipe);
-                }
-            });
+            // Check if the recipe is a favorite
+            favoriteRepository.isFavorite(recipeId)
+                    .subscribeOn(Schedulers.io()) // Perform the operation on a background thread
+                    .observeOn(AndroidSchedulers.mainThread()) // Observe the result on the main thread
+                    .subscribe(isFav -> {
+                        if (isFav != null && isFav > 0) {
+                            // Recipe is already a favorite, remove it
+                            favoriteRepository.removeFromFavorites(recipeId)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(() -> {
+                                        // Notify the user or update the UI
+                                        Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                                    }, throwable -> {
+                                        // Handle error
+                                        Toast.makeText(this, "Failed to remove from favorites", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            // Recipe is not a favorite, add it
+                            favoriteRepository.addToFavorites(recipe)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(() -> {
+                                        // Notify the user or update the UI
+                                        Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+                                    }, throwable -> {
+                                        // Handle error
+                                        Toast.makeText(this, "Failed to add to favorites", Toast.LENGTH_SHORT).show();
+                                    });
+                        }
+                    }, throwable -> {
+                        // Handle error
+                        Toast.makeText(this, "Failed to check favorite status", Toast.LENGTH_SHORT).show();
+                    });
+
+            // Navigate to the FavoriteScreen
             startActivity(new Intent(this, FavoriteScreen.class));
         });
     }

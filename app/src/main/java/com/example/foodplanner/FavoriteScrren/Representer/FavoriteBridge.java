@@ -1,6 +1,7 @@
 package com.example.foodplanner.FavoriteScrren.Representer;
 
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 import java.util.List;
 
 public interface FavoriteBridge {

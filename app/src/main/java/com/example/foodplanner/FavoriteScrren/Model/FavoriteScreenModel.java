@@ -1,12 +1,11 @@
 package com.example.foodplanner.FavoriteScrren.Model;
 
 
-
-import androidx.lifecycle.LiveData;
-
-
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Flowable;
 
 public class FavoriteScreenModel {
     private FavoriteRepository repository;
@@ -15,7 +14,7 @@ public class FavoriteScreenModel {
         this.repository = repository;
     }
 
-    public LiveData<List<Recipe>> getAllFavorites() {
+    public Flowable<List<Recipe>> getAllFavorites() {
         return repository.getAllFavorites();
     }
 

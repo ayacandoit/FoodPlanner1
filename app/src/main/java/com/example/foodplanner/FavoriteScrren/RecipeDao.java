@@ -1,26 +1,29 @@
 package com.example.foodplanner.FavoriteScrren;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFavorite(Recipe recipe);
+    Completable insertFavorite(Recipe recipe);
 
     @Query("SELECT * FROM favorite_recipes")
-    LiveData<List<Recipe>> getAllFavorites();
+    Flowable<List<Recipe>> getAllFavorites();
 
     @Query("SELECT COUNT(*) FROM favorite_recipes WHERE idMeal = :id")
-    LiveData<Integer> isFavorite(String id);
+    Single<Integer> isFavorite(String id);
 
     @Query("DELETE FROM favorite_recipes WHERE idMeal = :id")
-    void deleteById(String id);
+    Completable deleteById(String id);
 }

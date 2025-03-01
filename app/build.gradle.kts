@@ -61,6 +61,13 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    implementation ("com.github.sundeepk:compact-calendar-view:3.0.0")
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+        implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
+        implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
+        implementation ("androidx.room:room-rxjava3:2.4.2")
+
 
 
 
