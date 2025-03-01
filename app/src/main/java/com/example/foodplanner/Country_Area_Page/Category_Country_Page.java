@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +18,6 @@ import com.example.foodplanner.HomeScreen.View.View.Adapter.RandomAdapter;
 import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.R;
-import com.example.foodplanner.SearchScreen.Search;
 import com.example.foodplanner.Country_Area_Page.Presenter.CategoryCountryPresenter;
 import com.example.foodplanner.Country_Area_Page.Presenter.CategoryCountryBridge;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
