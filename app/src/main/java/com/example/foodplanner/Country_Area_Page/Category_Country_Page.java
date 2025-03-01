@@ -20,6 +20,7 @@ import com.example.foodplanner.Login.View.LogIn;
 import com.example.foodplanner.R;
 import com.example.foodplanner.Country_Area_Page.Presenter.CategoryCountryPresenter;
 import com.example.foodplanner.Country_Area_Page.Presenter.CategoryCountryBridge;
+import com.example.foodplanner.SearchFeature.View.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
