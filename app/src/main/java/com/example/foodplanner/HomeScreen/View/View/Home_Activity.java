@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.foodplanner.Calander.Calander;
+import com.example.foodplanner.Calander.View.Calander;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
 import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Area;

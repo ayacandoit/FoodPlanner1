@@ -105,19 +105,28 @@
                     android:paddingEnd="4dp"
                     android:fontFamily="@font/inriasansbold" />
 
-                <ImageView
-                    android:id="@+id/love"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    app:srcCompat="@drawable/heart_svgrepo_com__2_" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/calendar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    app:srcCompat="@drawable/baseline_calendar_today_24" />
+                    <ImageView
+                        android:id="@+id/love"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/heart_svgrepo_com__2_" />
+
+                    <ImageView
+                        android:id="@+id/calendar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/baseline_calendar_today_24" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

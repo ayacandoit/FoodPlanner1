@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.foodplanner.Calander.Model.Reciepe_calendar;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 
 
-@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
+@Database(entities = {Recipe.class, Reciepe_calendar.class}, version = 2, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
 public static String dataBaseName="recipe_database";
     private static volatile RecipeDatabase INSTANCE;

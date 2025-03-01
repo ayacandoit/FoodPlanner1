@@ -1,10 +1,12 @@
 package com.example.foodplanner.FavoriteScrren;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.foodplanner.Calander.Model.Reciepe_calendar;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 
 import java.util.List;
@@ -26,4 +28,21 @@ public interface RecipeDao {
 
     @Query("DELETE FROM favorite_recipes WHERE idMeal = :id")
     Completable deleteById(String id);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void inserttoCalendar(Reciepe_calendar reciepeCalendar);
+
+    @Query("SELECT * FROM calendar_recipes WHERE date = :date")
+    LiveData<List<Reciepe_calendar>> getRecipesForDate(String date);
+
+    @Query("SELECT * FROM calendar_recipes")
+    LiveData<List<Reciepe_calendar>> getAllcalendar_recipes();
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    Completable inserttoCalendar(Reciepe_calendar reciepeCalendar);
+//
+//    @Query("SELECT * FROM calendar_recipes WHERE date = :date")
+//    Flowable<List<Reciepe_calendar>> getRecipesForDate(String date);
+//
+//    @Query("SELECT * FROM calendar_recipes")
+//    Flowable<List<Reciepe_calendar>> getAllcalendar_recipes();
 }

@@ -14,15 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodPlanner"
         tools:targetApi="31">
-        <activity
-            android:name=".Calander.View.Adaptor.Calander"
-            android:exported="false" />
+
         <activity
             android:name=".SearchFeature.View.Search"
             android:exported="false" />
         <activity
-            android:name=".Calander.Calander"
-            android:exported="false" />
+            android:name=".Calander.View.Calander"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FavoriteScrren.FavoriteScreen"
             android:exported="false" />
@@ -37,7 +41,13 @@
             android:exported="false" />
         <activity
             android:name=".HomeScreen.View.View.Home_Activity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Login.View.LogIn"
             android:exported="false" />

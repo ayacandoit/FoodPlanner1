@@ -29,6 +29,8 @@ public class LogIn extends AppCompatActivity implements Bridge.View {
     LoginModel loginModel=new LoginModel();
     Context context;
     private LoginPresenter presenter;
+    TextView skipTxt;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -43,6 +45,7 @@ public class LogIn extends AppCompatActivity implements Bridge.View {
         logInBtn = findViewById(R.id.signinBtn);
         signUpTxt = findViewById(R.id.SignUpTxt);
         presenter=new LoginPresenter(this);
+       
 
 
         context=this;

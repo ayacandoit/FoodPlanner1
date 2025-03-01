@@ -1,4 +1,4 @@
-package com.example.foodplanner.FavoriteScrren;
+package com.example.foodplanner.FavoriteScrren.Model;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Calander.View.Calander;
-import com.example.foodplanner.FavoriteScrren.Model.FavoriteRepository;
+import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoriteBridge;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoritePresenter;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
@@ -22,14 +22,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
 public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.View {
+
     private RecyclerView recyclerView;
     private RandomAdapter adapter;
     private FavoritePresenter presenter;
     private BottomNavigationView bottomNavigationView;
-    private CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
 
     @Override
     public void showError(String message) {
-        // Show error message (e.g., using Toast or Snackbar)
     }
 
     private void setupBottomNavigation() {
@@ -85,11 +82,5 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
             }
             return true;
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        disposables.clear(); // Dispose of all subscriptions
     }
 }
