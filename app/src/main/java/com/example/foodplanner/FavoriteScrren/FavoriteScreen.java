@@ -58,7 +58,6 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
 
     @Override
     public void showError(String message) {
-        // Show error message (e.g., using Toast or Snackbar)
     }
 
     private void setupBottomNavigation() {
@@ -90,6 +89,6 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disposables.clear(); // Dispose of all subscriptions
+        disposables.clear();
     }
 }

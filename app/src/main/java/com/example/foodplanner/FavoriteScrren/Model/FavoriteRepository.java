@@ -21,25 +21,21 @@ public class FavoriteRepository {
         recipeDao = db.recipeDao();
     }
 
-    // Add a recipe to favorites
     public Completable addToFavorites(Recipe recipe) {
         return recipeDao.insertFavorite(recipe)
                 .subscribeOn(Schedulers.io());
     }
 
-    // Get all favorite recipes
     public Flowable<List<Recipe>> getAllFavorites() {
         return recipeDao.getAllFavorites()
                 .subscribeOn(Schedulers.io());
     }
 
-    // Check if a recipe is favorite
     public Single<Integer> isFavorite(String id) {
         return recipeDao.isFavorite(id)
                 .subscribeOn(Schedulers.io());
     }
 
-    // Remove a recipe from favorites
     public Completable removeFromFavorites(String id) {
         return recipeDao.deleteById(id)
                 .subscribeOn(Schedulers.io());

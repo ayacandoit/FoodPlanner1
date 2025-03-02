@@ -97,13 +97,11 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
         startActivity(intent);
     }
     private void openDatePicker() {
-        // Get current date to set as default in the DatePickerDialog
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH); // Note: Month is 0-based
+        int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Create and show the DatePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -125,10 +123,10 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
     private void setupBottomNavigation() {
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            FirebaseAuth auth = FirebaseAuth.getInstance(); // Get FirebaseAuth instance
+            FirebaseAuth auth = FirebaseAuth.getInstance();
 
             if (itemId == R.id.favotrite) {
-                if (auth.getCurrentUser() != null) { // Check if user is logged in
+                if (auth.getCurrentUser() != null) {
                     startActivity(new Intent(MealActivity.this, FavoriteScreen.class));
                 } else {
                     Toast.makeText(this, "Please log in to access favorites", Toast.LENGTH_SHORT).show();
@@ -163,41 +161,33 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
 
     private void setupFavoriteIcon(String recipeId) {
         favoriteIcon.setOnClickListener(view -> {
-            FirebaseAuth auth = FirebaseAuth.getInstance(); // Get FirebaseAuth instance
+            FirebaseAuth auth = FirebaseAuth.getInstance();
 
-            if (auth.getCurrentUser() != null) { // Check if user is logged in
-                // Check if the recipe is a favorite
+            if (auth.getCurrentUser() != null) {
                 favoriteRepository.isFavorite(recipeId)
-                        .subscribeOn(Schedulers.io()) // Perform the operation on a background thread
-                        .observeOn(AndroidSchedulers.mainThread()) // Observe the result on the main thread
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(isFav -> {
                             if (isFav != null && isFav > 0) {
-                                // Recipe is already a favorite, remove it
                                 favoriteRepository.removeFromFavorites(recipeId)
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe(() -> {
-                                            // Notify the user or update the UI
                                             Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
                                         }, throwable -> {
-                                            // Handle error
-                                            Toast.makeText(this, "Failed to remove from favorites", Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(this, "Failed to remove from favorites", Toast.LENGTH_SHORT).show();
                                         });
                             } else {
-                                // Recipe is not a favorite, add it
                                 favoriteRepository.addToFavorites(recipe)
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe(() -> {
-                                            // Notify the user or update the UI
                                             Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
                                         }, throwable -> {
-                                            // Handle error
                                             Toast.makeText(this, "Failed to add to favorites", Toast.LENGTH_SHORT).show();
                                         });
                             }
                         }, throwable -> {
-                            // Handle error
                             Toast.makeText(this, "Failed to check favorite status", Toast.LENGTH_SHORT).show();
                         });
             } else {

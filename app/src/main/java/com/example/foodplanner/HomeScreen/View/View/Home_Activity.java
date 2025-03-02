@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Home_Activity extends AppCompatActivity implements HomeBridge.View {
-    private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
     private RecyclerView recyclerViewRecipes, recyclerViewCategories, recyclerViewArreaes;
     private RandomAdapter recipeAdapter;
     private CategoryAdapter categoryAdapter;
