@@ -1,7 +1,10 @@
 package com.example.foodplanner.SearchFeature.Model;
 
+import static io.reactivex.rxjava3.schedulers.Schedulers.io;
+
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 import androidx.core.util.Pair;
@@ -21,11 +24,12 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Call;
 
 public class SearchModel {
 
     private CompositeDisposable disposables = new CompositeDisposable();
-
+    String category;
     public void getCategories(OnHomeListener onHomeListener) {
         ApiInterface services = ApiClient.getClient().create(ApiInterface.class);
         disposables.add(
@@ -65,65 +69,218 @@ public class SearchModel {
         );
     }
 
-    public void searchByCategory(String str, EditText searchEditText, OnHomeListener onHomeListener) {
+    public void searchByCategory(String str, EditText searchEditText, OnHomeListener onhomeListener) {
         ApiInterface services = ApiClient.getClient().create(ApiInterface.class);
-        disposables.add(
-                Observable.create(emitter -> {
-                            searchEditText.addTextChangedListener(new TextWatcher() {
-                                @Override
-                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-                                @Override
-                                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                    if (s != null && s.length() > 0) {
-                                        emitter.onNext(s.toString().toLowerCase());
-                                    } else {
-                                        emitter.onNext("");
+        Call<IngrediantResponce> api;
+        if (str != null && str.equalsIgnoreCase("c")) {
+            disposables.add(
+                    Observable.create(emitter -> {
+                                searchEditText.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                                     }
-                                }
 
-                                @Override
-                                public void afterTextChanged(Editable s) {}
-                            });
-                        })
-                        .debounce(300, TimeUnit.MILLISECONDS)
-                        .switchMap(query -> {
-                            String searchQuery = (String) query;
-                            if (str.equalsIgnoreCase("c")) {
-                                return services.getRecipesByCategory(searchQuery)
-                                        .map(response -> new Pair<>(response, searchQuery));
-                            } else if (str.equalsIgnoreCase("a")) {
-                                return services.getRecipesByArea(searchQuery)
-                                        .map(response -> new Pair<>(response, searchQuery));
-                            } else if (str.equalsIgnoreCase("i")) {
-                                return services.getRecipesByingrediant(searchQuery)
-                                        .map(response -> new Pair<>(response, searchQuery));
-                            } else {
-                                return Observable.empty();
-                            }
-                        })
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                pair -> {
-                                    RecipeResponse searchResponse = pair.first;
-                                    String searchQuery = pair.second;
-                                    if (searchResponse != null && searchResponse.meals != null) {
-                                        List<Recipe> filteredResults = new ArrayList<>();
-                                        for (Recipe recipe : searchResponse.meals) {
-                                            if (recipe.getStrMeal().toLowerCase().contains(searchQuery)) {
-                                                filteredResults.add(recipe);
-                                            }
-                                        }
-                                        onHomeListener.onSuccessSearchByCategory(filteredResults);
-                                    } else {
-                                        onHomeListener.onFailure("No results found");
+                                    @Override
+                                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                        emitter.onNext(s.toString());
+                                        category = s.toString();
+                                        Log.d("asdfdsfsdfsdf", "onTextChanged: " + category);
                                     }
-                                },
-                                throwable -> onHomeListener.onFailure(throwable.getMessage())
-                        )
-        );
+
+                                    @Override
+                                    public void afterTextChanged(Editable s) {
+                                    }
+                                });
+                            })
+                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .switchMap(query ->
+                                    services.getRecipesByCategory(category)
+                                            .subscribeOn(io())
+                            )
+                            .subscribeOn(io()) // Perform network call on IO thread
+                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribe(
+                                    searchResponse -> {
+                                        onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
+                                    },
+                                    throwable -> {
+                                        onhomeListener.onFailure(throwable.getMessage());
+                                    }
+                            )
+            );
+        } else if (str != null && str.equalsIgnoreCase("a")) {
+            disposables.add(
+                    Observable.create(emitter -> {
+                                searchEditText.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                        emitter.onNext(s.toString());
+                                        category = s.toString();
+                                        Log.d("asdfdsfsdfsdf", "onTextChanged: " + category);
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable s) {
+                                    }
+                                });
+                            })
+                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .switchMap(query ->
+                                    services.getRecipesByArea(category)
+                                            .subscribeOn(io())
+                            )
+                            .subscribeOn(io()) // Perform network call on IO thread
+                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribe(
+                                    searchResponse -> {
+                                        onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
+                                    },
+                                    throwable -> {
+                                        onhomeListener.onFailure(throwable.getMessage());
+                                    }
+                            )
+            );
+        } else if (str != null && str.equalsIgnoreCase("i")) {
+            disposables.add(
+                    Observable.create(emitter -> {
+                                searchEditText.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                        emitter.onNext(s.toString());
+                                        category = s.toString();
+                                        Log.d("asdfdsfsdfsdf", "onTextChanged: " + category);
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable s) {
+                                    }
+                                });
+                            })
+                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .switchMap(query ->
+                                    services.getRecipesByingrediant(category)
+                                            .subscribeOn(io())
+                            )
+                            .subscribeOn(io()) // Perform network call on IO thread
+                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribe(
+                                    searchResponse -> {
+                                        onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
+                                    },
+                                    throwable -> {
+                                        onhomeListener.onFailure(throwable.getMessage());
+                                    }
+                            )
+            );
+        } else {
+            disposables.add(
+                    Observable.create(emitter -> {
+                                searchEditText.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                        emitter.onNext(s.toString());
+                                        category = s.toString();
+                                        Log.d("asdfdsfsdfsdf", "onTextChanged: " + category);
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable s) {
+                                    }
+                                });
+                            })
+                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .switchMap(query ->
+                                    services.getRecipesByCategory(category)
+                                            .subscribeOn(io())
+                            )
+                            .subscribeOn(io()) // Perform network call on IO thread
+                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribe(
+                                    searchResponse -> {
+                                        onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
+                                    },
+                                    throwable -> {
+                                        onhomeListener.onFailure(throwable.getMessage());
+                                    }
+                            )
+            );
+        }
+
+
     }
+//    public void searchByCategory(String str, EditText searchEditText, OnHomeListener onHomeListener) {
+//        ApiInterface services = ApiClient.getClient().create(ApiInterface.class);
+//        Log.d("werwerwerwer",str);
+//        disposables.add(
+//                Observable.create(emitter -> {
+//                            searchEditText.addTextChangedListener(new TextWatcher() {
+//                                @Override
+//                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//
+//                                @Override
+//                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                                    if (s != null && s.length() > 0) {
+//                                        emitter.onNext(s.toString().toLowerCase());
+//                                    } else {
+//                                        emitter.onNext("");
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void afterTextChanged(Editable s) {}
+//                            });
+//                        })
+//                        .debounce(300, TimeUnit.MILLISECONDS)
+//                        .switchMap(query -> {
+//                            String searchQuery = (String) query;
+//                            if (str.equalsIgnoreCase("c")) {
+//                                return services.getRecipesByCategory(searchQuery)
+//                                        .map(response -> new Pair<>(response, searchQuery));
+//                            } else if (str.equalsIgnoreCase("a")) {
+//                                return services.getRecipesByArea(searchQuery)
+//                                        .map(response -> new Pair<>(response, searchQuery));
+//                            } else if (str.equalsIgnoreCase("i")) {
+//                                return services.getRecipesByingrediant(searchQuery)
+//                                        .map(response -> new Pair<>(response, searchQuery));
+//                            } else {
+//                                return Observable.empty();
+//                            }
+//                        })
+//                        .subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(
+//                                pair -> {
+//                                    RecipeResponse searchResponse = pair.first;
+//                                    String searchQuery = pair.second;
+//                                    if (searchResponse != null && searchResponse.meals != null) {
+//                                        List<Recipe> filteredResults = new ArrayList<>();
+//                                        for (Recipe recipe : searchResponse.meals) {
+//                                            if (recipe.getStrMeal().toLowerCase().contains(searchQuery)) {
+//                                                filteredResults.add(recipe);
+//                                            }
+//                                        }
+//                                        onHomeListener.onSuccessSearchByCategory(filteredResults);
+//                                    } else {
+//                                        onHomeListener.onFailure("No results found");
+//                                    }
+//                                },
+//                                throwable -> onHomeListener.onFailure(throwable.getMessage())
+//                        )
+//        );
+//    }
+//
     public void clear() {
         disposables.clear();
     }

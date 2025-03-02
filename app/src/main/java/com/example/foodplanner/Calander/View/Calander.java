@@ -45,7 +45,6 @@ public class Calander extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calander);
 
-        // ربط العناصر بملف XML
         calendarView = findViewById(R.id.compactcalendar_view);
         Monthtxt = findViewById(R.id.Monthtxt);
         reciepe_rec = findViewById(R.id.reciepe_rec);
