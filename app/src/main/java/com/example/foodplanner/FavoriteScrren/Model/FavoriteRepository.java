@@ -2,8 +2,6 @@ package com.example.foodplanner.FavoriteScrren.Model;
 
 import android.content.Context;
 
-import com.example.foodplanner.FavoriteScrren.RecipeDao;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 
 import java.util.List;

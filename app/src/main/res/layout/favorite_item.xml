@@ -1,61 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_corner"
-    android:layout_margin="8dp"
-    >
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        >
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:fillViewport="true">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"> <!-- التأكد أن البادينج هنا لا يؤثر على الـ BottomNavigationView -->
 
-
-            <ImageView
-                android:id="@+id/cardImage"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:src="@drawable/re" />
+                android:layout_height="wrap_content"
+                android:text="Today's Meal"
+                android:textSize="25sp"
+                android:textColor="#0F0E0E"
+                android:textStyle="bold"
+                android:fontFamily="@font/inriasansbold"
+                android:layout_margin="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rrv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                tools:listitem="@layout/random_recipe_item"/>
 
             <TextView
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#80878787"
-                android:fontFamily="@font/inriasansbold"
-                android:gravity="center"
-                android:textColor="#FAFFFFFF"
+                android:layout_height="wrap_content"
+                android:text="Enjoy different varieties"
                 android:textSize="25sp"
-                android:singleLine="true"
-                app:layout_constraintBottom_toBottomOf="@+id/cardImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Delicious" />
+                android:textColor="#0F0E0E"
+                android:textStyle="bold"
+                android:fontFamily="@font/inriasansbold"
+                android:layout_margin="20dp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/crv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                tools:listitem="@layout/random_recipe_item"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explore the country's meals"
+                android:textSize="25sp"
+                android:textColor="#0F0E0E"
+                android:textStyle="bold"
+                android:fontFamily="@font/inriasansbold"
+                android:layout_margin="20dp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/arv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                tools:listitem="@layout/random_recipe_item"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
-</FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/menue_bar"/>
+
+</RelativeLayout>

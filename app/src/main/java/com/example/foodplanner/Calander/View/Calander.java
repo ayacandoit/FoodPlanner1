@@ -14,7 +14,7 @@ import com.example.foodplanner.Calander.Model.Reciepe_calendar;
 import com.example.foodplanner.Calander.Presenter.CalendarPresenter;
 import com.example.foodplanner.Calander.View.Adaptor.Reciepe_calendar_adaptor;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 
 import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.View.LogIn;

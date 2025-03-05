@@ -3,6 +3,7 @@ package com.example.foodplanner.FavoriteScrren;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Calander.View.Calander;
 import com.example.foodplanner.FavoriteScrren.Model.FavoriteRepository;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoriteBridge;
 import com.example.foodplanner.FavoriteScrren.Representer.FavoritePresenter;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
@@ -25,6 +27,7 @@ import java.util.List;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.View {
+
     private RecyclerView recyclerView;
     private RandomAdapter adapter;
     private FavoritePresenter presenter;
@@ -40,7 +43,8 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        adapter = new RandomAdapter(List.of(), this);
+        // تهيئة الـ Adapter مع تفعيل وضع المفضلة لعرض زر الحذف
+        adapter = new RandomAdapter(List.of(), this, true);
         recyclerView.setAdapter(adapter);
 
         FavoriteRepository repository = new FavoriteRepository(this);
@@ -58,6 +62,7 @@ public class FavoriteScreen extends AppCompatActivity implements FavoriteBridge.
 
     @Override
     public void showError(String message) {
+        Toast.makeText(this, "Error: " + message, Toast.LENGTH_SHORT).show();
     }
 
     private void setupBottomNavigation() {

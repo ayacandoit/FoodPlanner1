@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Calander.View.Calander;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Area;
 import com.example.foodplanner.HomeScreen.View.Model.Category;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
@@ -43,8 +43,7 @@ public class Home_Activity extends AppCompatActivity implements HomeBridge.View 
     private List<Area> areaList = new ArrayList<>();
 
     HomePresenter homePresenter;
-//    MealsPresenter mealsPresenter;
-//    CategoriesPresenter categoriesPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +110,7 @@ public class Home_Activity extends AppCompatActivity implements HomeBridge.View 
     private void showMeals(List<Recipe> recipeList) {
         recyclerViewRecipes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false));
-        recipeAdapter = new RandomAdapter(recipeList, this);
+        recipeAdapter = new RandomAdapter(recipeList, this,false);
         recyclerViewRecipes.setAdapter(recipeAdapter);
     }
 

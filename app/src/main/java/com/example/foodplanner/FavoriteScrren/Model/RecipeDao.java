@@ -1,4 +1,4 @@
-package com.example.foodplanner.FavoriteScrren;
+package com.example.foodplanner.FavoriteScrren.Model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

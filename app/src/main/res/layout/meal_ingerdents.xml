@@ -8,14 +8,14 @@
     android:gravity="center_horizontal"
     android:layout_margin="8dp">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp">
+        app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,9 +23,10 @@
 
             <ImageView
                 android:id="@+id/cardImage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:clipToOutline="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,12 +37,12 @@
                 android:id="@+id/IngreName"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:background="#80878787"
+                android:background="#80FFFFFF"
                 android:fontFamily="@font/inriasansbold"
                 android:gravity="center"
-                android:textColor="#FAFFFFFF"
-                android:textSize="20sp"
                 android:singleLine="true"
+                android:textColor="#008000"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +54,14 @@
 
     <TextView
         android:id="@+id/MeasureName"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="35dp"
-
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/inriasansbold"
         android:gravity="center"
-        android:textColor="#8A47EB"
-        android:textSize="20sp"
         android:singleLine="true"
-        android:layout_marginTop="8dp"
+        android:textColor="#008000"
+        android:textSize="16sp"
         tools:text="Measurement" />
 
 </LinearLayout>

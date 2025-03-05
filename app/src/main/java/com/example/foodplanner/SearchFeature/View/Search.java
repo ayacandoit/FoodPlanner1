@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.foodplanner.Calander.View.Calander;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 
 import com.example.foodplanner.HomeScreen.View.Model.Area;
 import com.example.foodplanner.HomeScreen.View.Model.Category;
@@ -154,7 +154,6 @@ public class Search extends AppCompatActivity implements SearchBridge.View {
 
     @Override
     public void onCountriesFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -164,7 +163,6 @@ public class Search extends AppCompatActivity implements SearchBridge.View {
 
     @Override
     public void onIngrediantsFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -172,13 +170,11 @@ public class Search extends AppCompatActivity implements SearchBridge.View {
         if (recipeList != null && !recipeList.isEmpty()) {
             showSearchByCategories(recipeList);
         } else {
-            Toast.makeText(this, "No results found", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onSearchByCategoriesFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void showSearchByCategories(List<Recipe> recipeList) {
@@ -188,7 +184,7 @@ public class Search extends AppCompatActivity implements SearchBridge.View {
         ingrediantsRecyclerView.setVisibility(GONE);
 
         searchByCategoriesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        randomAdapter = new RandomAdapter(recipeList, this);
+        randomAdapter = new RandomAdapter(recipeList, this,false);
         searchByCategoriesRecyclerView.setAdapter(randomAdapter);
     }
 

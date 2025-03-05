@@ -2,33 +2,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-
-
-
-    android:layout_margin="8dp"
-    >
+    android:layout_width="170dp"
+    android:layout_height="170dp"
+    android:layout_margin="8dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_margin="8dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        >
-
+        app:cardCornerRadius="80dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/cardImage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:clipToOutline="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,19 +31,17 @@
             <TextView
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#80878787"
+                android:layout_height="60dp"
+                android:background="#80FFFFFF"
                 android:fontFamily="@font/inriasansbold"
                 android:gravity="center"
-                android:textColor="#FAFFFFFF"
-                android:textSize="25sp"
                 android:singleLine="true"
-                app:layout_constraintBottom_toBottomOf="@+id/cardImage"
+                android:textColor="#12811C"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Delicious" />
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

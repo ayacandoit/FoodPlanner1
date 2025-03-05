@@ -1,4 +1,4 @@
-package com.example.foodplanner.HomeScreen.View.View.Adapter;
+package com.example.foodplanner.FavoriteScrren.View.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,31 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.DetailsScreen.MealActivity;
-import com.example.foodplanner.FavoriteScrren.Model.FavoriteRepository;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 import com.example.foodplanner.R;
 
 import java.util.List;
 
-public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
     private List<Recipe> recipeList;
     private Context context;
-    private boolean isFavoriteScreen;
-    private FavoriteRepository favoriteRepository;
 
-    public RandomAdapter(List<Recipe> recipeList, Context context, boolean isFavoriteScreen) {
+    public FavoriteAdapter(List<Recipe> recipeList, Context context) {
         this.recipeList = recipeList;
         this.context = context;
-        this.isFavoriteScreen = isFavoriteScreen;
-        if (isFavoriteScreen) {
-            favoriteRepository = new FavoriteRepository(context);
-        }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.random_recipe_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -56,19 +49,6 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
             intent.putExtra("recipeId", recipe.getIdMeal());
             context.startActivity(intent);
         });
-
-        // عرض زر الحذف فقط في شاشة المفضلة
-        if (isFavoriteScreen) {
-            holder.deleteIcon.setVisibility(View.VISIBLE);
-            holder.deleteIcon.setOnClickListener(v -> {
-                favoriteRepository.removeFromFavorites(recipe.idMeal);
-                recipeList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, recipeList.size());
-            });
-        } else {
-            holder.deleteIcon.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -83,13 +63,12 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;
-        ImageView recipeImage, deleteIcon;
+        ImageView recipeImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeName = itemView.findViewById(R.id.recipeName);
             recipeImage = itemView.findViewById(R.id.cardImage);
-            deleteIcon = itemView.findViewById(R.id.deleteIcon); // زر الحذف الجديد
         }
     }
 }

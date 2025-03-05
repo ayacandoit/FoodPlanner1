@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Calander.View.Calander;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 import com.example.foodplanner.HomeScreen.View.View.Adapter.RandomAdapter;
 import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
@@ -89,7 +89,7 @@ public class Category_Country_Page extends AppCompatActivity implements Category
 
     @Override
     public void onRecipesByCategorySuccess(List<Recipe> recipes) {
-        adapter = new RandomAdapter(recipes, this);
+        adapter = new RandomAdapter(recipes, this,false);
         recyclerView.setAdapter(adapter);
     }
 
@@ -100,7 +100,7 @@ public class Category_Country_Page extends AppCompatActivity implements Category
 
     @Override
     public void onRecipesByAreaSuccess(List<Recipe> recipes) {
-        adapter = new RandomAdapter(recipes, this);
+        adapter = new RandomAdapter(recipes, this,false);
         recyclerView.setAdapter(adapter);
     }
 

@@ -92,13 +92,13 @@ public class SearchModel {
                                     }
                                 });
                             })
-                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .debounce(300, TimeUnit.MILLISECONDS)
                             .switchMap(query ->
                                     services.getRecipesByCategory(category)
                                             .subscribeOn(io())
                             )
-                            .subscribeOn(io()) // Perform network call on IO thread
-                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribeOn(io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     searchResponse -> {
                                         onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
@@ -128,13 +128,13 @@ public class SearchModel {
                                     }
                                 });
                             })
-                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .debounce(300, TimeUnit.MILLISECONDS)
                             .switchMap(query ->
                                     services.getRecipesByArea(category)
                                             .subscribeOn(io())
                             )
-                            .subscribeOn(io()) // Perform network call on IO thread
-                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribeOn(io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     searchResponse -> {
                                         onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
@@ -164,13 +164,13 @@ public class SearchModel {
                                     }
                                 });
                             })
-                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .debounce(300, TimeUnit.MILLISECONDS)
                             .switchMap(query ->
                                     services.getRecipesByingrediant(category)
                                             .subscribeOn(io())
                             )
-                            .subscribeOn(io()) // Perform network call on IO thread
-                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribeOn(io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     searchResponse -> {
                                         onhomeListener.onSuccessSearchByCategory(searchResponse.meals);
@@ -200,13 +200,13 @@ public class SearchModel {
                                     }
                                 });
                             })
-                            .debounce(300, TimeUnit.MILLISECONDS) // Wait 300ms after the user stops typing
+                            .debounce(300, TimeUnit.MILLISECONDS)
                             .switchMap(query ->
                                     services.getRecipesByCategory(category)
                                             .subscribeOn(io())
                             )
-                            .subscribeOn(io()) // Perform network call on IO thread
-                            .observeOn(AndroidSchedulers.mainThread()) // Observe result on main thread
+                            .subscribeOn(io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     searchResponse -> {
                                         onhomeListener.onSuccessSearchByCategory(searchResponse.meals);

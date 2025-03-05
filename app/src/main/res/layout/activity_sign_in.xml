@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
@@ -11,8 +12,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="top|center"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="16dp">
+
+        android:background="@drawable/back">
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,13 +33,15 @@
             android:inputType="textEmailAddress"
             android:hint="Email"
             android:padding="16dp"
+            android:backgroundTint="@color/white"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/PasswordEditText2"
-            android:layout_width="match_parent"
+            android:layout_width="347dp"
             android:layout_height="59dp"
             android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
             android:background="@drawable/rounded_corner"
             android:inputType="textPassword"
             android:hint="Password"
@@ -47,12 +50,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signinBtn"
-            android:layout_width="match_parent"
+            android:layout_width="347dp"
             android:layout_height="64dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#8A47EB"
+            android:backgroundTint="#38CF30"
             android:text="Sign in"
-            android:textColorLink="#8A47EB" />
+            android:textColorLink="#38CF30" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -66,6 +69,7 @@
                 android:text="You don't have an account?"
                 android:textSize="17sp"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"/>
 
@@ -74,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/white"
                 android:fontFamily="@font/inriasansbold"
                 android:text="Sign up"
                 android:textSize="17sp"

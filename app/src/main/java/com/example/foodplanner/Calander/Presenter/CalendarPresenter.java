@@ -5,16 +5,10 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.example.foodplanner.Calander.Model.Reciepe_calendar;
-import com.example.foodplanner.FavoriteScrren.RecipeDao;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
-import com.example.foodplanner.HomeScreen.View.Model.Recipe;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDao;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 
 import java.util.List;
-
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CalendarPresenter {
 

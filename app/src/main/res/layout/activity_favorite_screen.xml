@@ -13,6 +13,7 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:clipToPadding="false"
+      android:paddingTop="16dp"
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:layout_marginBottom="56dp"
@@ -26,7 +27,7 @@
       android:id="@+id/bottom_navigation"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?android:attr/windowBackground"
+      android:background="#5CE65C"
       app:layout_constraintBottom_toBottomOf="parent"
       app:menu="@menu/menue_bar"
       app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"/>

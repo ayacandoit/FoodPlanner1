@@ -24,7 +24,7 @@ import com.example.foodplanner.DetailsScreen.Presenter.DetailsScreenPresenter;
 import com.example.foodplanner.DetailsScreen.View.IngredientAdapter;
 import com.example.foodplanner.FavoriteScrren.FavoriteScreen;
 import com.example.foodplanner.FavoriteScrren.Model.FavoriteRepository;
-import com.example.foodplanner.FavoriteScrren.RecipeDatabase;
+import com.example.foodplanner.FavoriteScrren.Model.RecipeDatabase;
 import com.example.foodplanner.HomeScreen.View.Model.Recipe;
 import com.example.foodplanner.HomeScreen.View.View.Home_Activity;
 import com.example.foodplanner.Login.View.LogIn;
@@ -107,7 +107,6 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Handle the selected date
                         String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
                         Toast.makeText(MealActivity.this, "Selected Date: " +
                                 selectedDate, Toast.LENGTH_SHORT).show();
@@ -133,10 +132,9 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
                     startActivity(new Intent(this, LogIn.class));
                 }
             } else if (itemId == R.id.Logout) {
-                if (auth.getCurrentUser() != null) { // Check if user is logged in
-                    // Log out the user
-                    auth.signOut(); // Sign out from Firebase
-                    RecipeDatabase.deleteDatabase(this); // Clear local database (if needed)
+                if (auth.getCurrentUser() != null) {
+                    auth.signOut();
+                    RecipeDatabase.deleteDatabase(this);
                     Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, LogIn.class));
                     finish();
@@ -146,7 +144,7 @@ public class MealActivity extends AppCompatActivity implements DetailsScreenBrid
             } else if (itemId == R.id.home) {
                 startActivity(new Intent(MealActivity.this, Home_Activity.class));
             } else if (itemId == R.id.calander) {
-                if (auth.getCurrentUser() != null) { // Check if user is logged in
+                if (auth.getCurrentUser() != null) {
                     startActivity(new Intent(MealActivity.this, Calander.class));
                 } else {
                     Toast.makeText(this, "Please log in to access the calendar", Toast.LENGTH_SHORT).show();
